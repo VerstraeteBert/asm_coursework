@@ -16,6 +16,6 @@ start: mov R1, #255d
 loop: mov R0, #255d
 	  djnz R0, $
       djnz R1, loop
-      rl A
+      cpl A
       mov P1, A
       jmp start
