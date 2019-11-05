@@ -86,7 +86,7 @@ loop:
 	mov R3,#00H
 
 	inc R4
-	cjne R4,#10d,hour
+	cjne R4,#10d,hour ; reset als R5 == 2 en R4 == 4
 	mov R4,#00H
 
 	inc R5
