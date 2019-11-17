@@ -11,14 +11,14 @@ main:
 	mov WDTCN,#0ADH
 	setb EA
 
-	mov SFRPAGE,#0FH
+	mov SFRPAGE,#0FH P 4 - 7 enkel direct addresseerbaar in #0FH
 	mov XBR2,#40H
 	mov P4MDOUT,#0FFH
 	mov P2MDOUT,#0FFH
 	mov P1MDOUT,#0FFH
 	mov P0MDOUT,#0FFH
 
-	mov SFRPAGE,#00H
+	mov SFRPAGE,#00H (timers direct addresseerbaar in #00H)
 	mov TMOD,#10H ;timer 1 mode1: 16bit timer
 	mov CKCON,#02H; gedeeld door 48
 	mov TH1,#0ACH
