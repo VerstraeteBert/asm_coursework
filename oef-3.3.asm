@@ -34,16 +34,13 @@ main:
 	mov 26H,#7DH
 	mov 27H,#07H
 	mov 28H,#7FH
-	mov 29H,#6FH
-	
-
-	
+	mov 29H,#6FH	
 
 reset:
-	mov R2,#00d; teller
-	mov R3,#00d; teller2
-	mov R4,#00d; teller3
-	mov R5,#00d; teller4
+	mov R2,#00d; teller (minuten)
+	mov R3,#00d; teller2 (tientallen minuten)
+	mov R4,#00d; teller3 (uur)
+	mov R5,#00d; teller4 (tiental uur)
 	mov R6,#00d; seconden teller
 
 	mov A,#20H
@@ -69,8 +66,8 @@ reset:
 	mov P0,@R0
 
 loop:
-	jnb TF1,$									;niets hiertussen steken!
-	mov TH1,#0ACH							;niets hiertussen steken!(instructies kosten tijd) dus direct loop herstarten
+	jnb TF1,$ 
+	mov TH1,#0ACH ;niets hiertussen steken!(instructies kosten tijd) dus direct timer herstarten
 	mov TL1,#0EDH
 	clr TF1	
 	
@@ -78,22 +75,22 @@ loop:
 	cjne R6,#60d,loop
 	mov R6,#00H
 	
-	inc R2
-	cjne R2,#10d, schrijf ;compare and jump if not equal
+	inc R2 
+	cjne R2,#10d, schrijf_min ;compare and jump if not equal
 	mov R2,#00H
 
 	inc R3
-	cjne R3,#06d,schrijf2
+	cjne R3,#06d,schrijf_tiental_min
 	mov R3,#00H
 
 	inc R4
-	cjne R4,#10d,hour ; reset als R5 == 2 en R4 == 4
+	cjne R4,#10d,uur ; reset als R5 == 2 en R4 == 4
 	mov R4,#00H
 
 	inc R5
-	cjne R5,#3d,schrijf4
+	cjne R5,#3d,schrijf_tiental_uur
 
-schrijf:
+schrijf_min:
 	mov A,#20H
 	add A,R2
 	mov R0,A
@@ -102,32 +99,32 @@ schrijf:
 	mov SFRPAGE,#00H
 	jmp loop
 
-schrijf2:
+schrijf_tiental_min:
 	mov A,#20H
 	add A,R3
 	mov R0,A
 	mov P2,@R0 ;equivalent voor * in c(R0 is een pointer)
 	
-	jmp schrijf
+	jmp schrijf_min
 
-schrijf3:
+schrijf_uur:
 	mov A,#20H
 	add A,R4
 	mov R0,A
 	mov P1,@R0 ;equivalent voor * in c(R0 is een pointer)
 	
-	jmp schrijf2
+	jmp schrijf_tiental_min
 
-schrijf4:
+schrijf_tiental_uur:
 	mov A,#20H
 	add A,R5
 	mov R0,A
 	mov P0,@R0 ;equivalent voor * in c(R0 is een pointer)
 	
-	jmp schrijf3
+	jmp schrijf_uur
 
 
-hour:
-	cjne R4,#04d,schrijf3
-	cjne R5,#02d,schrijf3
+uur:
+	cjne R4,#04d,schrijf_uur
+	cjne R5,#02d,schrijf_uur
 	jmp reset
