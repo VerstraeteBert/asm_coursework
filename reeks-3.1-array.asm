@@ -14,8 +14,8 @@ main:
 	mov SFRPAGE,#0FH
 	mov XBR2,#40H
 	mov P1MDOUT,#0FFH
-	mov 20H,#3FH ;bitpatroon
-	mov 21H,#06H
+	mov 20H,#3FH ;bitpatroon 111111
+	mov 21H,#06H ;bitpatroon 000110
 	mov 22H,#5BH
 	mov 23H,#4FH
 	mov 24H,#66H
