@@ -12,8 +12,8 @@ main: clr EA
 
 	  mov SFRPAGE,#0FH
 	  mov XBR2,#40H
-	  mov P1MDOUT,#0FFH ; P1.6 output mode
-	  mov P1,#0FFH      ; P1.6=3.3V
+	  mov P1MDOUT,#40H ; P1.6 output mode
+	  mov P1,#40H      ; P1.6=3.3V
 
 start: mov R2,#0FFH
 
