@@ -1,0 +1,80 @@
+$include(c8051f120.inc)
+ 
+cseg at 0000H
+  jmp main
+
+cseg at 0003H
+  jmp ISR_EI0
+
+cseg at 0013H
+  jmp ISR_EI1
+ 
+cseg at 0050H  ;hier om memory overlap te voorkomen
+
+main: 
+  ; WDT uitzetten
+  clr EA
+  mov WDTCN,#0DEH  ; this block disables WDT (Watchdog Timer) to ensure the app keeps running
+  mov WDTCN,#0ADH
+  setb EA
+
+  mov 20H,#3FH ;bitpatroon
+  mov 21H,#06H
+  mov 22H,#5BH
+  mov 23H,#4FH
+  mov 24H,#66H
+  mov 25H,#6DH
+  mov 26H,#7DH
+  mov 27H,#07H
+  mov 28H,#7FH
+  mov 29H,#6FH
+
+  mov SFRPAGE,#0FH
+  mov XBR2,#40H
+
+  ; display pins -> output
+  mov P1MDOUT,#0FFH
+  mov P2MDOUT,#0FFH
+  mov P3MDOUT,#0FFH
+  mov P4MDOUT,#0FFH
+
+  ; display waardes op 0 zetten
+  mov P1,#20H
+  mov P2,#20H
+  mov P3,#20H
+  mov P4,#20H
+
+  ; toetsenbord config
+  mov P0MDOUT,#10H ; uitvoer
+  clr P0.4
+
+  ; interrupts op ext lijn 0 & 1
+  mov XBR1,#14H
+  setb EX0
+  setb EX1
+
+  ; config timer
+  mov SFRPAGE, #00H
+  mov CKCON, #02H
+  mov TMOD,#10H
+  mov TH1,#0BFH
+
+  jmp $
+
+ISR_EI0:
+  ; start timer
+  setb P0.0
+
+  jmp eind
+
+ISR_EI1:
+  ; stop timer
+  setb P0.1
+  
+  jmp eind
+
+eind:
+  reti
+
+
+END

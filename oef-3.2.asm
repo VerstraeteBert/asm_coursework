@@ -11,8 +11,8 @@ main:
     mov WDTCN,#0ADH
     setb EA
  
-    mov SFRPAGE,#0FH
-    mov XBR2,#40H
+    mov SFRPAGE,#0FH ; xbr & pinnen 4 - 7 in F
+    mov XBR2,#40H ; XBR aan
     mov P1MDOUT,#0FFH
     mov P2MDOUT,#0FFH
     mov P4MDOUT,#0FFH

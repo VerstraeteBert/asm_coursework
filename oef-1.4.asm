@@ -14,7 +14,6 @@ main: clr EA
       setb P1.6 ; P1.6 = 3.3V
       mov R2,#00d
       mov R3,#00d
-      jmp start
 
 start: jb P3.7,$
        jnb P3.7,$
@@ -30,6 +29,5 @@ loop2: mov R5, #255d
        djnz R5,$
        djnz R4,loop2 ; dubbele vertragingslus
        cpl P1.6
-
        djnz R3, loop
        jmp start

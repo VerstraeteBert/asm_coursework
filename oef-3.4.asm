@@ -128,3 +128,4 @@ uur:
 	cjne R4,#04d,schrijf_uur
 	cjne R5,#02d,schrijf_uur
 	jmp reset
+END

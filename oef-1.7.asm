@@ -7,7 +7,7 @@ main: clr EA
       mov WDTCN, #0DEH
       mov WDTCN, #0ADH
       setb EA
-      mov SFRPAGE,#0FH
+      mov SFRPAGE,#0FH ;xbr in F
       mov XBR2,#40H
       mov P1MDOUT, #40H ; P1.6=OUTPUT
       mov A, #1d,
@@ -19,8 +19,8 @@ start: mov P1, A
 loop: mov R1, #255d
       djnz R1, $
       djnz R0, loop
-      jc right
-      rl A
+      jc right ; jump if carry bit set
+      rl A  ; rotate left A
       jmp start
 
 klik:
@@ -28,5 +28,5 @@ klik:
       cpl C
       jmp start
 
-right: rr A
+right: rr A ; rotate right A
        jmp start 
