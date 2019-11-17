@@ -14,7 +14,7 @@ main: clr EA
 
 start: mov P1, A 
        jnb P3.7, klik
-       mov R0, #Z55d
+       mov R0, #255d
 
 loop: mov R1, #255d
       djnz R1, $
