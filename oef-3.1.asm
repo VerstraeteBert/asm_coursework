@@ -40,3 +40,4 @@ schrijf:
 	mov R0,A
 	mov P1,@R0 ;equivalent voor * in c(R0 is een pointer)
 	jmp start
+END

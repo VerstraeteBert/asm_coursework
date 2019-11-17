@@ -28,4 +28,5 @@ loop:
 								;, anders extra delay voor volgende overflow door uitvoering andere instructies
 	clr TF1 ; bij timer 1 gebeurt dit automatisch, bij tr2, tr3, tr4 NIET. Toch best altijd expliciet schrijven
 	cpl P1.6
-	jmp loop		
+	jmp loop	
+END	

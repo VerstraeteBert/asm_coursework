@@ -30,3 +30,4 @@ klik:
 
 right: rr A ; rotate right A
        jmp start 
+END

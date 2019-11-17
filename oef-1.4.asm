@@ -31,3 +31,4 @@ loop2: mov R5, #255d
        cpl P1.6
        djnz R3, loop
        jmp start
+END

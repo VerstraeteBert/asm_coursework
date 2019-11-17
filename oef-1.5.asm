@@ -19,3 +19,4 @@ loop: mov R0, #255d
       cpl A
       mov P1, A
       jmp start
+END

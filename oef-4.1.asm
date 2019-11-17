@@ -50,7 +50,7 @@ main:
     jmp $
  
 ISR_TR3:
-    clr TF3 ; autoreload timer -> CAPL & CAPH niet resetten!
+    clr TF3 ; autoreload timer -> CAPL & CAPH niet resetten
     inc R2
     cjne R2,#10d,uit
     mov R2,#00H

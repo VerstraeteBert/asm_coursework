@@ -22,3 +22,4 @@ loop: mov R3,#255D
 	  djnz R2,loop 		; while(--R2)
 	  cpl P1.6
 	  jmp start
+END

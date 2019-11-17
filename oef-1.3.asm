@@ -18,3 +18,4 @@ start: jb P3.7,$ (jump if bit set) (1 als niet ingedrukt) (dus wacht tot indrukk
        jnb P3.7,$  (jump if not bit set) (0 als ingedrukt) (dus wacht tot loslaten)
        cpl P1.6
        jmp start
+END
