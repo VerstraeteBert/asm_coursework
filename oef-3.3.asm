@@ -22,7 +22,7 @@ main:
 	mov TMOD,#10H ;timer 1 mode1: 16bit timer
 	mov CKCON,#02H; gedeeld door 48
 	mov TH1,#0ACH
-	mov TL1,#0EDH ;zie notities brecht waarom
+	mov TL1,#0EDH ; seconde timer
 	setb TR1
 
 	mov 20H,#3FH ;bitpatroon
@@ -37,13 +37,14 @@ main:
 	mov 29H,#6FH
 	
 
-	mov R6,#00d; seconden teller
+	
 
 reset:
-	mov R2,#09d; teller
-	mov R3,#05d; teller2
-	mov R4,#03d; teller3
-	mov R5,#02d; teller4
+	mov R2,#00d; teller
+	mov R3,#00d; teller2
+	mov R4,#00d; teller3
+	mov R5,#00d; teller4
+	mov R6,#00d; seconden teller
 
 	mov A,#20H
 	add A,R2
