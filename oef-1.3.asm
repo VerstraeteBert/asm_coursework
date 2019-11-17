@@ -12,7 +12,7 @@ main: clr EA
       mov XBR2,#40H
       mov P1MDOUT, #40H ; P1.6=OUTPUT
       mov P3MDOUT, #00H ; P3.7=INPUT (moet eigenlijk niet gezegd worden, standaard op input)
-      setb P.16 ; P1.6 = 3.3V
+      setb P1.6 ; P1.6 = 3.3V
       jmp start
 
 start: jb P3.7,$ (jump if bit set) (1 als niet ingedrukt) (dus wacht tot indrukken)
