@@ -83,10 +83,3 @@ verder:
 	pop 00H
 
 	ret
-
-
-
-
-
-
-

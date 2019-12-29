@@ -116,4 +116,3 @@ start:
   
   mov P0, A
   jmp start
-  

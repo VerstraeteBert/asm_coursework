@@ -50,4 +50,3 @@ loop:
 
 	mov P4, A ; res in P5.6
 	jmp loop
-

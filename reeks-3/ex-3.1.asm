@@ -48,6 +48,3 @@ schrijf:
       jmp start
 
 END
-
-
-

@@ -96,5 +96,4 @@ schrijf_sec:
     mov P0,@R0
 
     reti ; return from interrupt
-
 END
