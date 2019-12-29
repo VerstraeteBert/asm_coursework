@@ -1,5 +1,11 @@
 ; vb 3
 ; programma om registerwaarde te vermenigvuldigen met 257 (zonder gebruik van mult)
+; get x 256
+; -> 8 shifts naar links
+; MSB wordt LSB
+; + 1 x LSB
+; LSB behouden
+; -> mov B,A
 mov B, A
 jmp $
 ; zie notas
@@ -10,65 +16,70 @@ jmp $
 ; A x 2 -> 1 keer verschuiven (nr links)
 ; A x 0,5 -> 1 keer verschuiven (nr rechts)
 ; Eerst éénmaal naar links ( A x 2 ) ! Deze waarde kan ook weer gebruikt worden A x 64 te bereekenen
-main: 
+main:
 	clr EA 
  	mov WDTCN #0DEH 
 	mov WDTCN,#0ADH 
 	setb EA 
-	mov A,#253d
-	mov R7,A ; opslaan om te gebruiken voor de verschillende machtsberekeningen
+
+	mov A,#221d
+	mov R7,A
 	mov B,#0d
-	
-maal2: 
+
+maal2:
 	clr C
-	rlc A ; A x 2
-	push Acc 
-	mov A, B ; 
-	rlc A ; carry bit toevoegen in B
-	mov B, A
-	pop Acc ; Acc = LSB x 2
-		; B = MSB x 2 + carry
-	push Acc
-	push B
-	mov R6, #5d ; vijf iteraties ( 2^5)
-	
-maal32:
-	clr C
-	rlc A ; MSB x 2 x 2
+	rlc A
+	push Acc ; lsb x 2
 	mov A,B
 	rlc A
-	mov B,A 
-	pop Acc
-	djnz R6, maal32
-	; A = LSB x 64
-	; B = LSB x 64
+	mov B,A
+
+	push B ; msb x 2
+
+	mov R2,#5d
+
+maal32:
 	clr C
-	pop 01H ; R1 = MSB x 2
-	pop OOH ; R0 = LSB x 2
-	
-	subb A,R0 ; subtract with borrow (cijferrekenen)
-	; A = LSB x 62
-	
+	rlc A
 	push Acc
 	mov A,B
-	subb A,R1
-	mov B,A ; B = MSB x 62
-	push B
-	
-	; intiële waarde delen door 2
-	mov A,R7
-	clr C
-	rrc A ; A = init / 2 ; rest bij deling zit in C
-	
-	pop 01H ; R1 -> MSB x 62
-	pop 00H ; R0 -> LSB x 62
-	
-	; addc gebruiken kan ook, echter wss niet nodig in dit geval
-	add A, R0 ; A = LSB x 60,5
-	push Acc
-	mov A,R1
-	addc A,#00d
+	rlc A
 	mov B,A
 	pop Acc
-	
+	djnz R2,maal32
+
+	clr C
+	; A = lsb * 64
+	; B = msb * 64
+
+	; (x * 64) - (x * 2)
+	pop 01H ; msb * 2
+	pop 00H ; lsb * 2
+
+	subb A,R0 ; A = LSB * 62
+	push Acc ; LSB * 62 op stack
+	mov A,B
+	subb A,R1 ; A = MSB * 62
+	mov B,A; B = MSB * 62
+
+	; (x * 0,5)
+	clr C
+	mov A,R7
+	rrc A ; x / 2
+
+	; (x * 62 + x * 0,5)
+	pop 00H ; LSB * 62
+
+	; lsb * 62 + lsb * 0,5
+	addc A,R0
+	push Acc
+	; + carry bit op msb
+	mov A,B ; A = MSB * 62
+	addc A,#00d
+
+	mov B,A
+	pop Acc
+	; A = LSB ( x * 60,5)
+	; B = MSB ( x * 60,5)
+
 	jmp $
