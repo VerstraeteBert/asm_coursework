@@ -1,13 +1,6 @@
 Laatste les notities
 
--- Examen
-- Alle leerstof kan gevraagd worden; analoog digitaal, toetsenbord, timer, c programma omzetten naar asm, ... 
-- Verder kan ook iets gevraagd worden die niet gezien was; 
-- Vlot datasheet kunnen lezen; simpele niet geziene configuraties kunnen nodig zijn
-- Opgeloste oefeningen mogen niet gebruikt worden; we krijgen de datasheet, cursus,  
- 
- 
- ADC programma:
+ ;ADC programma:
  
  clr EA
  mov WDTCN,#0DEH
@@ -32,7 +25,7 @@ Laatste les notities
  mov REF0CN,#00000111b
  
  ; vertragingslus
- ; wachten op referntiespanning (zie p108) (VREF turn on time 1 <-> 2 condensatoren))
+ ; wachten op referentiespanning (zie p108) (VREF turn on time 1 <-> 2 condensatoren))
  ; 2.43V (gemmideld bij 25 C)
  mov R0,#255d
  loop:
@@ -102,7 +95,7 @@ start:
   subb A,#64H
   
   mov B,#50L
-  div A,B ; 8 klok cycli OwO 
+  div AB
   
   push B
   add A,#15d
@@ -112,8 +105,8 @@ start:
   ; % (getalstelsel)
   ; / (getalstelsel)
  
-  mov B, #10d ; tientallen in A
-  div A,B ; eenheden in B
+  mov B,#10d ; tientallen in A
+  div AB ; eenheden in B
   
   mov P2, A
   mov P1, B

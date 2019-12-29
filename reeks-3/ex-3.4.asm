@@ -94,7 +94,7 @@ schrijf_min:
 	mov A,#20H
 	add A,R2
 	mov R0,A
-	mov SFRPAGE,#0FH	;P0,P1,P2,P3 in alle SFRPAGES P4,... in SFRPAGE #0FH!!!!!!!!!!!!!!!!!!!!!!!!!! BELANGRIJK EXAMEN LEER DEZE SHIT
+	mov SFRPAGE,#0FH
 	mov P4,@R0 ;equivalent voor * in c(R0 is een pointer)
 	mov SFRPAGE,#00H
 	jmp loop
@@ -122,7 +122,6 @@ schrijf_tiental_uur:
 	mov P0,@R0 ;equivalent voor * in c(R0 is een pointer)
 	
 	jmp schrijf_uur
-
 
 uur:
 	cjne R4,#04d,schrijf_uur
