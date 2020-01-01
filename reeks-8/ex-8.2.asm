@@ -28,22 +28,24 @@ faculteit:
    dec R0
    dec R0
    push Acc
+   push B
    mov A,@R0
    jnz recursie
    mov @R0,#1d
-   pop Acc
    pop B
+   pop Acc
    pop 00H
    ret
 
 recursie:
-   dec A
-   push Acc
+   dec A ; A = n - 1
+   push Acc ; A = 4 
    call faculteit
-   pop B
+   pop B ; B = 24
    inc A
    mul AB
    mov @R0,A
+   pop B
    pop Acc
    pop 00H
    ret
