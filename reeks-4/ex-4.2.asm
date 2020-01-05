@@ -15,8 +15,8 @@ main:
 	setb EA
 
 	mov SFRPAGE,#0FH
-	mov XBR2
-	setb EX0
+	mov XBR2,#40H
+	mov XBR2,#04H
 
 	; toets layout p0.0 -> 0.3 zijn input lijnen
 	; toets p0.4 -> 0.7 -> output
@@ -30,6 +30,8 @@ main:
 	clr P0.4
 
 	mov R2,#0d
+
+	setb EX0
 
 	jmp $
 
