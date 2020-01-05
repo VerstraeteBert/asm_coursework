@@ -48,3 +48,15 @@ schrijf:
       jmp start
 
 END
+
+; of
+
+loop:
+      mov P0,@R0
+      jb P3.7,$
+      jnb P3.7,$
+      inc R0
+      cjne R0,#30H,loop
+      mov R0,#20H
+      jmp loop 
+END

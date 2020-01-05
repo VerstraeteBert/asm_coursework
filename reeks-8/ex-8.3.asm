@@ -18,7 +18,7 @@ main:
 
   call verm
 
-  mov A, 23H
+  mov A,23H
   mov B,24H
 
 verm:
@@ -56,7 +56,7 @@ loop:
 	mov R1,23H
 	add A,R1
 
-	mov A,23H
+	mov 23H,A
 
 	mov A,24H
 	mov R1,21H

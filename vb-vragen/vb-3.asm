@@ -33,7 +33,8 @@ maal2:
 	mov A,B
 	rlc A
 	mov B,A
-
+    pop Acc
+    push Acc
 	push B ; msb x 2
 
 	mov R2,#5d
@@ -83,3 +84,4 @@ maal32:
 	; B = MSB ( x * 60,5)
 
 	jmp $
+END

@@ -26,6 +26,7 @@ main:
 	clr P1.6
 
 	mov P0MDOUT,#10H
+    setb P0.0 ; P0.0 input
 	clr P0.4
 
 	mov R2,#0d

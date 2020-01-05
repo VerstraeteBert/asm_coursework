@@ -13,8 +13,8 @@ main:
 	mov SFRPAGE,#0FH
 
 	MOV XBR2,#40H
-	mov P1MDOUT, #80H
-	mov P1,#80H
+	mov P1MDOUT, #40H
+	mov P1,#40H
 
 	jmp $
 END
@@ -40,3 +40,4 @@ loop:
 	djnz R1,$
 	djnz R0,loop
 	jmp start
+END

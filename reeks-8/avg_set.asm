@@ -60,7 +60,7 @@ add_next:
     inc R4
 
 skip_msb:
-    inc R0
+    inc @R0
     djnz R1, add_next
 
     mov R3,A
@@ -89,10 +89,10 @@ do_subb:
            ; msb dec met 1
     jnc do_subb
 
-    dec R3 ; msb--
+    dec R4 ; msb--
 
-    cjne R3,#0FFH,clr_carry_and_subb
-    ; als R3 == #0FFH
+    cjne R4,#0FFH,clr_carry_and_subb
+    ; als R4 == #0FFH
     ; dan was MSB al 0
     ; en LSB niet meer deelbaar -> subtractie te veel gedaan
     ; einde

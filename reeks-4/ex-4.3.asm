@@ -66,6 +66,7 @@ main:
 
 ISR_TR0:
 	; increments timer values
+	mov SFRPAGE,#00H
 	clr TF0 ; clr TF0 overflow
 
 	inc R2
@@ -106,9 +107,9 @@ ISR_EX0:
 ISR_EX1:
 	; stop knop
 	setb P0.0
-	clr EX1
-	clr ET0 ; disable timer 0
-	setb EX0
+	clr EX1 ; disable EX1
+	clr ET0 ; disable TR1
+	setb EX0 ; enable EX0
 	mov SFRPAGE,#00H
 	clr TR0 ; disable TR0
 

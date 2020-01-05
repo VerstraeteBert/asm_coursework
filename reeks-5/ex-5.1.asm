@@ -94,18 +94,19 @@ start:
   mov A,ADC0L
   subb A,#64H
   
-  mov B,#50L
-  div AB
+  mov B,#5d
+  div AB ; hoeveel keer past delta C hierin?
   
-  push B
-  add A,#15d
+  push B ; rest
+  add A,#15d ; quot + 15
 
 
    ; getal per getal uit cijfer halen
   ; % (getalstelsel)
   ; / (getalstelsel)
  
-  mov B,#10d ; tientallen in A
+  mov B,#10d
+  ; tientallen in A
   div AB ; eenheden in B
   
   mov P2, A
