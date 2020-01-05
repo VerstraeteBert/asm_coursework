@@ -20,7 +20,7 @@ Laatste les notities
  ; bit 7-5 (don't care)
  ; ADC0 voltage moet referentiespanning nemen van vref2 PIN (niet van ADC out) -> bit 4 moet 0 zijn
  ; TEMPE aan (temp ENABLE) -> bit 2 moet 1 zij
- ; bit 1 : must be 1 if using ADC
+ ; BIASE: bit 1 : must be 1 if using ADC
  ; REFBE (Internal reference enbable bit) -> interne referentiespanning (1) / externe ref (0), in dit geval dus 1
  mov REF0CN,#00000111b
  
@@ -75,7 +75,7 @@ start:
 ; omzetten van spanning -> temperatuur  
 ; zie fig 5.2
 ; VTEMP = 0.00286 * (TEMPC) + 0.776
-; -> TEMPC = (VTEMP - 0,776) / 0.286
+; -> TEMPC = (VTEMP - 0,776) / 0.00286
 
 ; omgekeerde berekening ook kennen :-)
 ; bv temp van 15 gr -> 0.8162v -> 564H (digitale waarde) (DISCREET! -> enkel gehele getallen) 

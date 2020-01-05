@@ -20,15 +20,15 @@ main:
 	mov TH0,#06H
 	mov TL0,#0C6H
 
-	setb TR1
+	setb TR0
 
 start:
-	jnb TF1, $
+	jnb TF0, $
 	clr TR0
 	mov TH0,#06H
 	mov TL0,#0C5H
 	setb TR0
-	clr TF1
+	clr TF0
 	cpl P1.6
 	
 	jmp start

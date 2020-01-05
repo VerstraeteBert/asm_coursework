@@ -94,9 +94,9 @@ do_subb:
     cjne R3,#0FFH,clr_carry_and_subb
     ; als R3 == #0FFH
     ; dan was MSB al 0
-    ; en LSB niet meer deelbaar
+    ; en LSB niet meer deelbaar -> subtractie te veel gedaan
+    ; einde
 
-    ; subtractie te veel gedaan
     ; sinds de vorige lsb & msb niet meer deelbaar waren
     dec R2
 
