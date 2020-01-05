@@ -5,15 +5,15 @@ cseg at 0000H
 cseg at 0050H
 
 main:
-	clr EA
-	mov WDTCN,#0DEH
-	mov WDTCN,#0ADH
-	setb EA
-
-	mov SFRPAGE,#0FH
-	mov XBR2,#40H
-
-	mov 20H,#3FH ;bitpatroon
+    clr EA
+    mov WDTCN,#0DEH
+    mov WDTCN,#0ADH
+    setb EA
+    
+    mov SFRPAGE,#0FH
+    mov XBR2,#40H
+    
+    mov 20H,#3FH ;bitpatroon
     mov 21H,#06H
     mov 22H,#5BH
     mov 23H,#4FH
